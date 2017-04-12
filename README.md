@@ -1,2 +1,13 @@
-# autonoom
-This is the main repository for 'noom'. His developers call him 'autonoom' (autonoom is dutch for autonomous, its a joke)
+# Auto 'noom'
+
+
+'noom' is a autonomous car (autonoom in dutch, hence the name auto 'noom'). It is developed by: 
+
+# Developers
+  - Lars Hanssen (Mechanic)
+  - Erwin Castricum (Lead Developer)
+  - Kelvin Muller (Software Developer)
+  - Sam Laan (Electrical engineer)
+
+# Features
+To be added
