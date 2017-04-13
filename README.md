@@ -1,7 +1,7 @@
 # Auto 'noom'
 
 
-'noom' is a autonomous car (autonoom in dutch, hence the name auto 'noom'). It is developed by: 
+'noom' is a autonomous car (autonoom in dutch, hence the name auto 'noom').
 
 # Developers
   - Lars Hanssen (Mechanic)

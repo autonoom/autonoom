@@ -4,9 +4,8 @@ import threading
 import time
 
 class dcMotor(threading.Thread):
-    speed = 0
-    direction = 0
     def __init__(self):
+        threading.Thread.__init__(self)
         self.speed = 0
         self.direction = 0
         self.setSpeed(self.speed) #Set initial speed to 0, else the car would start driving right away.
