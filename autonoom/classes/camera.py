@@ -24,7 +24,7 @@ def process_img(original_image):
     processed_img = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
     processed_img = cv2.Canny(processed_img, threshold1=200, threshold2=300)
     processed_img = cv2.GaussianBlur(processed_img, (3, 3), 0)
-    vertices = np.array([[10, 500], [10, 300], [700, 200], [1000, 200], [1910, 300], [1910, 500]], np.int32)
+    vertices = np.array([[10, 500], [10, 300], [300, 200], [500, 200], [800, 300], [800, 500]], np.int32)
     processed_img = roi(processed_img, [vertices])
     #                       edges
     lines = cv2.HoughLinesP(processed_img, 1, np.pi/180, 180, np.array([]), 50, 15)
@@ -34,7 +34,7 @@ def process_img(original_image):
 
 def main():
     last_time = time.time()
-    stream = urllib.urlopen('http://192.168.42.1:8080/?action=stream')
+    stream = urllib.urlopen('http://192.168.42.1:5000/video_feed')
     bytes = ''
     while True:
         bytes += stream.read(1024)
@@ -49,9 +49,8 @@ def main():
             last_time = time.time()
             cv2.imshow('window', new_screen)
             # cv2.imshow('wiqndow2', cap)
-            cv2.imshow('window2', cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+            cv2.imshow('window2', frame)
             if cv2.waitKey(25) & 0xFF == ord('q'):
                 cv2.destroyAllWindows()
                 break
 main()
-
