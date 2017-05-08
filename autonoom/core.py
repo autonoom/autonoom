@@ -1,13 +1,13 @@
 from classes.dcMotor import dcMotor
 from classes.servoMotor import servoMotor
-from classes.camera import camera
+from classes.sonicSensor import sonicSensor
 
 class core:
     #core functions go here
     def __init__(self):
         self.dcMotor = dcMotor()
         self.servoMotor = servoMotor()
-        self.camera = camera()
+        self.sonicSensor = sonicSensor()
         self.standardSpeed = 10 #Standard speed? Put in UML?
 
     def decideAction(self):
@@ -35,4 +35,4 @@ class core:
 
 
 if __name__ == '__main__':
-    #same as void main()
+    #Main
