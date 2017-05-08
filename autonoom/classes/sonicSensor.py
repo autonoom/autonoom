@@ -1,42 +1,46 @@
 import RPi.GPIO as GPIO
 import time
 
+#Constants
 TRIG = 23
 ECHO = 24
 
 class sonicSensor:
     def __init__(self):
-        self.distance = 0
         self.MAXDISTANCE = 15
         GPIO.setmode(GPIO.BCM)
-
-
-
-    def isNearObject(self):
         GPIO.setup(TRIG, GPIO.OUT)
         GPIO.setup(ECHO, GPIO.IN)
 
-        GPIO.output(TRIG, False)
-        print("Waiting for sensor to settle")
-        time.sleep(2)
+
+    def isNearObject(self):
+        # set Trigger to HIGH
         GPIO.output(TRIG, True)
+
+        # set Trigger after 0.01ms to LOW
         time.sleep(0.00001)
         GPIO.output(TRIG, False)
 
+        StartTime = time.time()
+        StopTime = time.time()
+
+        # save StartTime
         while GPIO.input(ECHO) == 0:
-            pulse_start = time.time()
+            StartTime = time.time()
 
+        # save time of arrival
         while GPIO.input(ECHO) == 1:
-            pulse_end = time.time()
+            StopTime = time.time()
 
-        pulse_duration = pulse_end - pulse_start
-        distance = pulse_duration * 17150
-        distance = round(distance, 2)
+        # time difference between start and arrival
+        TimeElapsed = StopTime - StartTime
+        # multiply with the sonic speed (34300 cm/s)
+        # and divide by 2, because there and back
+        distance = (TimeElapsed * 34300) / 2
 
-        GPIO.cleanup
-        if distance < self.MAXDISTANCE:
+        if distance < 15.0:
             return True
         else:
             return False
-        #If something went wrong return false
+
         return False
