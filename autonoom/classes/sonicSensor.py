@@ -7,7 +7,7 @@ ECHO = 24
 class sonicSensor:
     def __init__(self):
         self.distance = 0
-        self.MAXDISTANCE = 15
+        self.MAXDISTANCE = 90
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(TRIG, GPIO.OUT)
         GPIO.setup(ECHO, GPIO.IN)

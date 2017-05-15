@@ -1,37 +1,40 @@
 from classes.dcMotor import dcMotor
 from classes.servoMotor import servoMotor
 from classes.sonicSensor import sonicSensor
-
-class core:
-    #core functions go here
+import core
+import threading
+import time
+class core(threading.Thread):
     def __init__(self):
         self.dcMotor = dcMotor()
         self.servoMotor = servoMotor()
         self.sonicSensor = sonicSensor()
-        self.standardSpeed = 10 #Standard speed? Put in UML?
+        self.standardSpeedForward = 15.7 #Standard speed? Put in UML?
+	self.standardSpeedBackward = 9.8
+	threading.Thread.__init__(self)
+	self.start()
+	self.goForward()
 
-    def decideAction(self):
-
+    def run(self):
+	while True:
+		if self.sonicSensor.isNearObject():
+			self.dcMotor.setZero()
 
     def goForward(self):
-        dcMotor.setDirection(1)
-        dcMotor.setSpeed(self.standardSpeed)
+        self.dcMotor.setSpeed(self.standardSpeedForward)
 
     def goBackward(self):
-        dcMotor.setDirection(0)
-        dcMotor.setSpeed(self.standardSpeed)
+        self.dcMotor.setSpeed(self.standardSpeedBackward)
 
     def goStop(self):
-        dcMotor.setSpeed(0) #Full stop
-
-    def goCorrect(self):
-
-    def sendVideo(self):
-
-    def createObjects(self):
+        self.dcMotor.setZero() #Full stop
 
 
 
 
 
 if __name__ == '__main__':
+	main = core()
+	main.goForward()
+	time.sleep(2)
+	main.goStop()

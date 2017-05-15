@@ -24,7 +24,7 @@ class servoMotor:
         self.servo.ChangeDutyCycle(self.steps)
 
     def zeroPosition(self):
-        zeroPosition = 11
+        zeroPosition = 13.4
         self.servo.ChangeDutyCycle(zeroPosition)
         self.steps = zeroPosition
 

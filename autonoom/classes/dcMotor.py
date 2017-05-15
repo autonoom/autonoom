@@ -24,7 +24,7 @@ class dcMotor(threading.Thread):
         self.speed = speed
 
     def setZero(self):
-        zeroSpeed = 12.3
+        zeroSpeed = 13.4
         self.setSpeed(zeroSpeed)
 
 
