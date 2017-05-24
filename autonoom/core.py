@@ -1,16 +1,21 @@
 from classes.dcMotor import dcMotor
 from classes.servoMotor import servoMotor
 from classes.sonicSensor import sonicSensor
+from classes.comProt import comProt
+
 import core
 import threading
 import time
+
+STANDARDSPEEDFORWARD = 15.7
+STANDARDSPEEDBACKWARD = 9.8
+
 class core(threading.Thread):
     def __init__(self):
+        self.comProt = comProt()
         self.dcMotor = dcMotor()
         self.servoMotor = servoMotor()
         self.sonicSensor = sonicSensor()
-        self.standardSpeedForward = 15.7 #Standard speed? Put in UML?
-        self.standardSpeedBackward = 9.8
         threading.Thread.__init__(self)
         self.start()
         self.goForward()
@@ -21,10 +26,10 @@ class core(threading.Thread):
                 self.dcMotor.setZero()
 
     def goForward(self):
-        self.dcMotor.setSpeed(self.standardSpeedForward)
+        self.dcMotor.setSpeed(STANDARDSPEEDFORWARD)
 
     def goBackward(self):
-        self.dcMotor.setSpeed(self.standardSpeedBackward)
+        self.dcMotor.setSpeed(STANDARDSPEEDBACKWARD)
 
     def goStop(self):
         self.dcMotor.setZero() #Full stop
@@ -35,6 +40,5 @@ class core(threading.Thread):
 
 if __name__ == '__main__':
     main = core()
-    main.goForward()
-    time.sleep(2)
-    main.goStop()
+    while True:
+        print core.comProt.data
