@@ -10,15 +10,15 @@ class core(threading.Thread):
         self.servoMotor = servoMotor()
         self.sonicSensor = sonicSensor()
         self.standardSpeedForward = 15.7 #Standard speed? Put in UML?
-	self.standardSpeedBackward = 9.8
-	threading.Thread.__init__(self)
-	self.start()
-	self.goForward()
+        self.standardSpeedBackward = 9.8
+        threading.Thread.__init__(self)
+        self.start()
+        self.goForward()
 
     def run(self):
-	while True:
-		if self.sonicSensor.isNearObject():
-			self.dcMotor.setZero()
+        while True:
+            if self.sonicSensor.isNearObject():
+                self.dcMotor.setZero()
 
     def goForward(self):
         self.dcMotor.setSpeed(self.standardSpeedForward)
@@ -34,7 +34,7 @@ class core(threading.Thread):
 
 
 if __name__ == '__main__':
-	main = core()
-	main.goForward()
-	time.sleep(2)
-	main.goStop()
+    main = core()
+    main.goForward()
+    time.sleep(2)
+    main.goStop()

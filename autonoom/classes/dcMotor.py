@@ -1,4 +1,4 @@
-#File for DC motor actions
+# File for DC motor actions
 import threading
 import RPi.GPIO as GPIO
 import time
@@ -19,14 +19,10 @@ class dcMotor(threading.Thread):
         GPIO.cleanup()
 
     def setSpeed(self, speed):
-        #Formula for speed to actual ms, check which direction the application is set to as well
+        # Formula for speed to actual ms, check which direction the application is set to as well
         self.motor.ChangeDutyCycle(speed)
         self.speed = speed
 
     def setZero(self):
         zeroSpeed = 13.4
         self.setSpeed(zeroSpeed)
-
-
-
-
