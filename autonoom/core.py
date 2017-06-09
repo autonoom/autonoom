@@ -41,4 +41,4 @@ class core(threading.Thread):
 if __name__ == '__main__':
     main = core()
     while True:
-        print core.comProt.data
+        print main.comProt.data

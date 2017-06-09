@@ -14,16 +14,15 @@ class comProt(threading.Thread):
         self.s.listen(1)
         threading.Thread.__init__(self)
         self.start()
-        self.data = 'null'
+        self.data = ''
 
     def run(self):
+        conn, addr = self.s.accept()
+        print 'Connection address:', addr
         while 1:
-            conn, addr = self.s.accept()
-            print 'Connection address:', addr
-            while 1:
-                data = conn.recv(BUFFER_SIZE)
-                if data:
-                    self.data = data
-                    conn.send(data)  # echo
-                    if data == 'close': break
-            conn.close()
+            data = conn.recv(BUFFER_SIZE)
+            if data:
+                self.data = data
+                conn.send(data)  # echo
+                if data == 'close': break
+        conn.close()
