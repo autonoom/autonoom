@@ -15,8 +15,6 @@ class core(threading.Thread):
         self.servoMotor = servoMotor()
         self.sonicSensor = sonicSensor()
         self.dcMotor = dcMotor()
-        cam() # Just call it.
-        self.goForward()
         threading.Thread.__init__(self)
         self.start()
 
