@@ -1,7 +1,7 @@
 from dcMotor import dcMotor
+
 from servoMotor import servoMotor
 from sonicSensor import sonicSensor
-import time
 motor = dcMotor()
 servo = servoMotor()
 sensor = sonicSensor()

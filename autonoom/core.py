@@ -1,11 +1,10 @@
+import threading
+
 from classes.dcMotor import dcMotor
+
+from classes.comProt import comProt
 from classes.servoMotor import servoMotor
 from classes.sonicSensor import sonicSensor
-from classes.comProt import comProt
-
-import core
-import threading
-import time
 
 STANDARDSPEEDFORWARD = 15.7
 STANDARDSPEEDBACKWARD = 9.8
