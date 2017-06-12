@@ -16,6 +16,7 @@ class dcMotor(threading.Thread):
             self.STANDARDSPEEDFORWARD = 13.9
             self.STANDARDSPEEDBACKWARD = 9.7
             #Setup GPIO
+            #Broadcom SOCKET channel is used as standard 
             GPIO.setmode(GPIO.BCM)
             GPIO.setup(MOTOR, GPIO.OUT)
             #Setup PWM with 100KHz
