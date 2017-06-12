@@ -15,7 +15,7 @@ class comProt(threading.Thread):
             self.s.listen(1)
             threading.Thread.__init__(self)
             self.start()
-            self.data = ''
+            self.data = None
 
         def run(self):
             conn, addr = self.s.accept()

@@ -1,11 +1,14 @@
 import RPi.GPIO as GPIO
 import time
+import threading
 
 TRIG = 23
 ECHO = 24
+pulse_end = 0
+pulse_start = 0
 
-class sonicSensor:
-    class __sonicSensor:
+class sonicSensor(threading.Thread):
+    class __sonicSensor(threading.Thread):
         def __init__(self):
             self.distance = 0
             self.MAXDISTANCE = 90
@@ -19,7 +22,7 @@ class sonicSensor:
         def isNearObject(self):
             GPIO.output(TRIG, False)
 
-            time.sleep(0.2)
+            time.sleep(0.5)
             GPIO.output(TRIG, True)
             time.sleep(0.00001)
             GPIO.output(TRIG, False)
@@ -33,7 +36,7 @@ class sonicSensor:
             pulse_duration = pulse_end - pulse_start
             distance = pulse_duration * 17150
             distance = round(distance, 2)
-
+	    self.distance = distance
             if distance < self.MAXDISTANCE:
                 return True
             else:

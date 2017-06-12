@@ -5,7 +5,7 @@ import time
 
 SERVO = 18
 
-class servoMotor:
+class servoMotor(threading.Thread):
     class __servoMotor:
         def __init__(self):
             self.position = 0
