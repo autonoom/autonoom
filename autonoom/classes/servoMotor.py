@@ -3,18 +3,16 @@ import threading
 import RPi.GPIO as GPIO
 import time
 
-SERVO = 18
-
 class servoMotor(threading.Thread):
-    class __servoMotor:
-        def __init__(self):
+        def __init__(self, servoPin):
             self.position = 0
             self.steps = 0
+            self.servoPin = servoPin
             # Setup GPIO
             GPIO.setmode(GPIO.BCM)
-            GPIO.setup(SERVO, GPIO.OUT)
+            GPIO.setup(self.servoPin, GPIO.OUT)
             # Setup PWM with 100KHz
-            self.servo = GPIO.PWM(SERVO, 100)
+            self.servo = GPIO.PWM(self.servoPin, 100)
             # Start PWM
             self.servo.start(5)
             self.zeroPosition() #Set position to zero at start
@@ -31,15 +29,5 @@ class servoMotor(threading.Thread):
             zeroPosition = 13.4
             self.servo.ChangeDutyCycle(zeroPosition)
             self.steps = zeroPosition
-
-    # From https://python-3-patterns-idioms-test.readthedocs.io/en/latest/Singleton.html
-    instance = None
-
-    # Singleton implementation
-    def __new__(cls):  # __new__ always a classmethod
-        if not servoMotor.instance:
-            servoMotor.instance = servoMotor.__servoMotor()
-        return servoMotor.instance
-
 
 

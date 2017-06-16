@@ -11,10 +11,10 @@ from classes.sonicSensor import sonicSensor
 class core(threading.Thread):
     def __init__(self):
         #create objects
-        self.comProt = comProt()
-        self.servoMotor = servoMotor()
-        self.sonicSensor = sonicSensor()
-        self.dcMotor = dcMotor()
+        self.comProt = comProt(5005) #Give port number to object
+        self.servoMotor = servoMotor(18) #PWM pin for the servo is 18
+        self.sonicSensor = sonicSensor(23,24,60) #Trigger pin, Echo pin and maxdistance
+        self.dcMotor = dcMotor(13) #PWM pin for the engine is 13
         #initialize thread
         threading.Thread.__init__(self)
         #start thread
