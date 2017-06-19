@@ -42,4 +42,11 @@ class core(threading.Thread):
 
 
 if __name__ == '__main__':
-    main = core() #Start the program
+    #main = core() #Start the program
+    sonicSensor1 = sonicSensor(23, 24, 60)  # Trigger pin, Echo pin and maxdistance
+    while True:
+        time.sleep(0.2)
+    if sonicSensor1.isNearObject() is True:
+        print sonicSensor1.giveDist()
+    else:
+        print "False"
