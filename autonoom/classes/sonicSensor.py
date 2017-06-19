@@ -12,6 +12,7 @@ class sonicSensor(threading.Thread):
         def __init__(self, trig, echo, maxdistance):
             self.distance = 90 #Start at 90 so the engine doesnt stop right away
             self.maxdistance = maxdistance  #Stop when 60 cm in front of object
+            self.maxdistance_tweak = 80
             self.trig = trig
             self.echo = echo
             #setup GPIO
@@ -23,7 +24,7 @@ class sonicSensor(threading.Thread):
             GPIO.cleanup()
 
         def isNearObject(self):
-            #from https://www.modmypi.com/blog/hc-sr04-ultrasonic-range-sensor-on-the-raspberry-pi
+            # from https://www.modmypi.com/blog/hc-sr04-ultrasonic-range-sensor-on-the-raspberry-pi
             while True:
                 GPIO.output(self.trig, False)
 
@@ -42,7 +43,7 @@ class sonicSensor(threading.Thread):
                 dist = pulse_duration * 17150
                 dist = round(dist, 2)
                 self.distance = dist
-                if dist < self.maxdistance: #If distance is closer than MAXDISTANCE return true.
+                if dist < self.maxdistance and dist < self.maxdistance_tweak:  # If distance is closer than MAXDISTANCE return true.
                     return True
                 else:
                     return False
