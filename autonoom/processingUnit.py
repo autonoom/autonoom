@@ -30,11 +30,11 @@ class core(threading.Thread):
     def run(self):
         while True:
             self.goForward()
-            while self.sonicSensor.isNearObject() is True and self.stopFlag is False:
+            if self.sonicSensor.isNearObject() is True and self.stopFlag is False:
                 self.goStop()
                 self.stopFlag = True
-                if self.sonicSensor.isNearObject() is False:
-                    self.stopFlag = False
+            if self.sonicSensor.isNearObject() is False:
+                self.stopFlag = False
 
 
     def goForward(self):
