@@ -29,7 +29,8 @@ class core(threading.Thread):
 
     def run(self):
         while True:
-            self.goForward()
+            pass
+            #self.goForward()
 
     def goForward(self):
         if not self.sonicSensor.isNearObject():
