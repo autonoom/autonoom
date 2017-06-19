@@ -29,7 +29,8 @@ class core(threading.Thread):
 
     def run(self):
         while True:
-            pass
+            if self.sonicSensor.isNearObject():
+                self.dcMotor.setZero()
             #self.goForward()
 
     def goForward(self):
