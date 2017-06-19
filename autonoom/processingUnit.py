@@ -21,18 +21,13 @@ class core(threading.Thread):
         self.start()
 
     def run(self):
-        #start with going forward
-        self.goForward()
         while True:
-            if self.comProt.data == 'stop': #if the telnet connection sends a stop signal. Stop
+            if self.sonicSensor.isNearObject() is True:
                 self.goStop()
-            if self.comProt.data == 'start': #if the telnet connection sends a start signal. Start
-                self.goForward()
-            if self.comProt.data is not None: #Output the data is its not NULL
-                print "Received data = " + self.comProt.data
 
     def goForward(self):
-        self.dcMotor.setSpeed(self.dcMotor.STANDARDSPEEDFORWARD) #Call setSpeed
+        if not self.sonicSensor.isNearObject():
+            self.dcMotor.setSpeed(self.dcMotor.STANDARDSPEEDFORWARD) #Call setSpeed
 
     def goBackward(self):
         self.dcMotor.setSpeed(self.dcMotor.STANDARDSPEEDBACKWARD) #Call setSpeed
@@ -42,11 +37,13 @@ class core(threading.Thread):
 
 
 if __name__ == '__main__':
-    #main = core() #Start the program
-    sonicSensor1 = sonicSensor(23, 24, 60)  # Trigger pin, Echo pin and maxdistance
+    main = core()
+    # start with going forward
+    #main.goForward()
     while True:
-        time.sleep(0.2)
-    if sonicSensor1.isNearObject() is True:
-        print sonicSensor1.giveDist()
-    else:
-        print "False"
+        if main.comProt.data == 'stop':  # if the telnet connection sends a stop signal. Stop
+            main.goStop()
+        if main.comProt.data == 'start':  # if the telnet connection sends a start signal. Start
+            main.goForward()
+        if main.comProt.data is not None:  # Output the data is its not NULL
+            print "Received data = " + main.comProt.data

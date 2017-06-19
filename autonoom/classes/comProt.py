@@ -17,7 +17,6 @@ class comProt(threading.Thread):
             conn, addr = self.s.accept() #Accept the telnet connection if available
             print 'Connection address:', addr #Print it for debugging purposes
             while 1:
-                self.data = None
                 data = conn.recv(20)   #Receive the data with a max buffer size of 20 bytes
                 if data:                        #If there is any data on the bus
                     self.data = data            #Put it into self.data
