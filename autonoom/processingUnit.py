@@ -21,7 +21,7 @@ class core(threading.Thread):
         self.servoMotor = servoMotor(18) #PWM pin for the servo is 18
         self.sonicSensor = sonicSensor(23,24,60) #Trigger pin, Echo pin and maxdistance
         self.dcMotor = dcMotor(13) #PWM pin for the engine is 13
-        self.stopFlag = false
+        self.stopFlag = False
         #initialize thread
         threading.Thread.__init__(self)
         #start thread
@@ -29,7 +29,7 @@ class core(threading.Thread):
 
     def run(self):
         while True:
-
+            self.goForward()
             if self.sonicSensor.isNearObject() is True and self.stopFlag is False:
                 self.goStop()
                 self.stopFlag = True
