@@ -28,7 +28,9 @@ class sonicSensor(threading.Thread):
 
     def isNearObject(self):
         # from https://www.modmypi.com/blog/hc-sr04-ultrasonic-range-sensor-on-the-raspberry-pi
-        while True:
+        global pulse_end
+	global pulse_start
+	while True:
             GPIO.output(self.trig, False)
 
             time.sleep(0.1)

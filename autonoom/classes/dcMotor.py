@@ -4,9 +4,7 @@ import RPi.GPIO as GPIO
 import time
 from sonicSensor import sonicSensor
 
-ZEROSPEED = 12.5
-STANDARDSPEEDFORWARD = 13.9
-STANDARDSPEEDBACKWARD = 9.7
+ZEROSPEED = 13.2
 
 class dcMotor(threading.Thread):
         def __init__(self, motorPin):
@@ -34,5 +32,4 @@ class dcMotor(threading.Thread):
             self.speed = speed
 
         def setZero(self): #Set the speed to zero.
-            self.motor.ChangeDutyCycle(ZEROSPEED)
-            self.speed = ZEROSPEED
+	    self.setSpeed(11.7)
