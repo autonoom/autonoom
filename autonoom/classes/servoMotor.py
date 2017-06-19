@@ -2,6 +2,8 @@
 import threading
 import RPi.GPIO as GPIO
 import time
+#max 2
+#min 2
 
 class servoMotor(threading.Thread):
         def __init__(self, servoPin):

@@ -11,8 +11,6 @@ from classes.sonicSensor import sonicSensor
 STANDARDSPEEDFORWARD = 14.8
 STANDARDSPEEDBACKWARD = 9.3
 
-
-
 #core class
 class core(threading.Thread):
     def __init__(self):
@@ -29,13 +27,13 @@ class core(threading.Thread):
 
     def run(self):
         while True:
-            if self.sonicSensor.isNearObject():
-                self.dcMotor.setZero()
-                if self.stopFlag is False:
-                    self.dcMotor.goBackward()
-                self.stopFlag = True
-            self.stopFlag = False
-
+            #if self.sonicSensor.isNearObject():
+            #    self.dcMotor.setZero()
+            #    if self.stopFlag is False:
+            #        self.dcMotor.goBackward()
+            #    self.stopFlag = True
+            #self.stopFlag = False
+            self.servoMotor.turnLeft(2)
 
     def goForward(self):
         if not self.sonicSensor.isNearObject():
@@ -54,8 +52,9 @@ if __name__ == '__main__':
     #main.goForward()
     while True:
         if main.comProt.data == 'stop':  # if the telnet connection sends a stop signal. Stop
-            main.goStop()
+            #main.goStop()
         if main.comProt.data == 'start':  # if the telnet connection sends a start signal. Start
-            main.goForward()
+            #main.goForward()
+            main.servoMotor.zeroPosition()
         if main.comProt.data is not None:  # Output the data is its not NULL
             print "Received data = " + main.comProt.data
