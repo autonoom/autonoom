@@ -31,7 +31,7 @@ class core(threading.Thread):
                #self.dcMotor.setZero()
                if self.stopFlag is False:
                    #self.dcMotor.goBackward()
-                   self.servoMotor.turnLeft(2)
+                   self.servoMotor.turnLeft(12)
                self.stopFlag = True
             self.stopFlag = False
             main.servoMotor.zeroPosition()
