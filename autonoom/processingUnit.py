@@ -55,6 +55,7 @@ if __name__ == '__main__':
     while True:
         if main.comProt.data == 'stop':  # if the telnet connection sends a stop signal. Stop
             #main.goStop()
+            main.servoMotor.zeroPosition()
         if main.comProt.data == 'start':  # if the telnet connection sends a start signal. Start
             #main.goForward()
             main.servoMotor.zeroPosition()
