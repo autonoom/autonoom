@@ -27,13 +27,15 @@ class core(threading.Thread):
 
     def run(self):
         while True:
-            #if self.sonicSensor.isNearObject():
-            #    self.dcMotor.setZero()
-            #    if self.stopFlag is False:
-            #        self.dcMotor.goBackward()
-            #    self.stopFlag = True
-            #self.stopFlag = False
-            self.servoMotor.turnLeft(2)
+            if self.sonicSensor.isNearObject():
+               #self.dcMotor.setZero()
+               if self.stopFlag is False:
+                   #self.dcMotor.goBackward()
+                   self.servoMotor.turnLeft(2)
+               self.stopFlag = True
+            self.stopFlag = False
+            main.servoMotor.zeroPosition()
+
 
     def goForward(self):
         if not self.sonicSensor.isNearObject():
