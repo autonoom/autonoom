@@ -18,7 +18,7 @@ class core(threading.Thread):
         self.comProt = comProt(5005) #Give port number to object
         self.servoMotor = servoMotor(18) #PWM pin for the servo is 18
         self.sonicSensor = sonicSensor(23,24,60) #Trigger pin, Echo pin and maxdistance
-        #self.dcMotor = dcMotor(13) #PWM pin for the engine is 13
+        self.dcMotor = dcMotor(13) #PWM pin for the engine is 13
         self.stopFlag = False
         #initialize thread
         threading.Thread.__init__(self)
@@ -28,12 +28,12 @@ class core(threading.Thread):
     def run(self):
         while True:
             if self.sonicSensor.isNearObject():
-                #self.goStop()
+                self.goStop()
                 if self.stopFlag is False:
-                    #self.goBackward()
+                    self.goBackward()
                     self.servoMotor.turnLeft(12)
                 self.stopFlag = True
-                #self.goStop()
+                self.goStop()
             self.stopFlag = False
             #self.servoMotor.zeroPosition() kan niet
 
@@ -55,11 +55,9 @@ if __name__ == '__main__':
     #main.goForward()
     while True:
         if main.comProt.data == 'stop':  # if the telnet connection sends a stop signal. Stop
-            #main.goStop()
-            main.servoMotor.zeroPosition()
+            main.goStop()
         if main.comProt.data == 'start':  # if the telnet connection sends a start signal. Start
-            #main.goForward()
-            main.servoMotor.zeroPosition()
+            main.goForward()
         if main.comProt.data is not None:  # Output the data is its not NULL
             print "Received data = " + main.comProt.data
         if main.comProt.data == 'zero':  # Output the data is its not NULL
