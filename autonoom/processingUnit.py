@@ -66,9 +66,11 @@ if __name__ == '__main__':
     while True:
         if main.comProt.data == 'stop':  # if the telnet connection sends a stop signal. Stop
             main.goStop()
-            #main.servoMotor.zeroPosition()
+            main.servoMotor.zeroPosition()
         if main.comProt.data == 'start':  # if the telnet connection sends a start signal. Start
             main.goForward()
-            #main.servoMotor.zeroPosition()
+            main.servoMotor.zeroPosition()
         if main.comProt.data is not None:  # Output the data is its not NULL
             print "Received data = " + main.comProt.data
+        if main.comProt.data == 2:  # Output the data is its not NULL
+            main.servoMotor.turnLeft(2)
