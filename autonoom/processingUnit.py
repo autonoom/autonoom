@@ -35,7 +35,7 @@ class core(threading.Thread):
                 self.stopFlag = True
                 self.goStop()
             self.stopFlag = False
-            self.servoMotor.zeroPosition()
+            # self.servoMotor.zeroPosition()
         # while True:
         #
         #
