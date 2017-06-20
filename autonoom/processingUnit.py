@@ -28,11 +28,11 @@ class core(threading.Thread):
     def run(self):
         while True:
             if self.sonicSensor.isNearObject():
-                self.dcMotor.setZero()
+                self.setZero()
                 if self.stopFlag is False:
-                    self.dcMotor.goBackward()
+                    self.goBackward()
                 self.stopFlag = True
-                self.dcMotor.setZero()
+                self.setZero()
             self.stopFlag = False
 
         # while True:
