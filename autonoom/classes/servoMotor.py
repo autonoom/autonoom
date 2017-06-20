@@ -10,7 +10,6 @@ class servoMotor(threading.Thread):
             self.position = 0
             self.steps = 0
             self.servoPin = servoPin
-            self.zeroPosition = 13.4
             # Setup GPIO
             GPIO.setmode(GPIO.BCM)
             GPIO.setup(self.servoPin, GPIO.OUT)
@@ -23,15 +22,14 @@ class servoMotor(threading.Thread):
         def turnLeft(self, steps): #Turn left with .. steps.
             self.steps -= steps
             self.servo.ChangeDutyCycle(self.steps)
-            #self.steps = self.zeroPosition
 
         def turnRight(self, steps): #Turn right with .. steps.
             self.steps += steps
             self.servo.ChangeDutyCycle(self.steps)
-            #self.steps = self.zeroPosition
 
         def zeroPosition(self): #set position to 0 .. steps.
-            self.servo.ChangeDutyCycle(self.zeroPosition)
-            self.steps = self.zeroPosition
+            zeroPosition = 13.4
+            self.servo.ChangeDutyCycle(zeroPosition)
+            self.steps = zeroPosition
 
 
