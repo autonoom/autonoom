@@ -31,6 +31,7 @@ class core(threading.Thread):
                 self.goStop()
                 if self.stopFlag is False:
                     self.goBackward()
+                    main.servoMotor.turnLeft(5)
                 self.stopFlag = True
                 self.goStop()
             self.stopFlag = False
@@ -45,6 +46,7 @@ class core(threading.Thread):
         #            self.servoMotor.turnLeft(12)
         #        self.stopFlag = True
         #     self.stopFlag = False
+        #if main.comProt.data == 5:  # Output the data is its not NULL
 
 
 
@@ -72,5 +74,3 @@ if __name__ == '__main__':
             #main.servoMotor.zeroPosition()
         if main.comProt.data is not None:  # Output the data is its not NULL
             print "Received data = " + main.comProt.data
-        if main.comProt.data == 5:  # Output the data is its not NULL
-            main.servoMotor.turnLeft(5)
