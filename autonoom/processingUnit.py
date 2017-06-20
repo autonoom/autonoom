@@ -35,7 +35,7 @@ class core(threading.Thread):
                 self.stopFlag = True
                 #self.goStop()
             self.stopFlag = False
-            self.servoMotor.zeroPosition()
+            #self.servoMotor.zeroPosition() kan niet
 
 
     # def goForward(self):
@@ -64,4 +64,5 @@ if __name__ == '__main__':
             print "Received data = " + main.comProt.data
         if main.comProt.data == 'zero':  # Output the data is its not NULL
             main.servoMotor.zeroPosition()
-                
+        if main.comProt.data == '5':  # Output the data is its not NULL
+            main.servoMotor.turnLeft(5)
