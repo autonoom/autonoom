@@ -74,3 +74,6 @@ if __name__ == '__main__':
             #main.servoMotor.zeroPosition()
         if main.comProt.data is not None:  # Output the data is its not NULL
             print "Received data = " + main.comProt.data
+        if main.comProt.data == 'zero':  # Output the data is its not NULL
+            main.servoMotor.zeroPosition()
+                
