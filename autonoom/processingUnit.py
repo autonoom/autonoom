@@ -53,13 +53,24 @@ if __name__ == '__main__':
     main = core()
     # start with going forward
     #main.goForward()
+    counter = 0
+    data = 0
     while True:
         if main.comProt.data == 'stop':  # if the telnet connection sends a stop signal. Stop
             main.goStop()
         if main.comProt.data == 'start':  # if the telnet connection sends a start signal. Start
             main.goForward()
         if main.comProt.data is not None:  # Output the data is its not NULL
-            print "Received data = " + main.comProt.data
+            if counter < 10:
+                counter +=1
+                data += int(main.comProt.data)
+            elif counter is 10:
+                data = data /100
+                print "Avg data = " + data
+                data = 0
+                counter = 0
+            else:
+                print "Received data = " + main.comProt.data
         if main.comProt.data == 'zero':  # Output the data is its not NULL
             main.servoMotor.zeroPosition()
         if main.comProt.data == '5':  # Output the data is its not NULL
