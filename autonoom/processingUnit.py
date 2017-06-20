@@ -38,15 +38,15 @@ class core(threading.Thread):
             #self.servoMotor.zeroPosition() kan niet
 
 
-    # def goForward(self):
-    #     if not self.sonicSensor.isNearObject():
-    #         self.dcMotor.setSpeed(STANDARDSPEEDFORWARD) #Call setSpeed
-    #
-    # def goBackward(self):
-    #     self.dcMotor.setSpeed(STANDARDSPEEDBACKWARD) #Call setSpeed
-    #
-    # def goStop(self):
-    #     self.dcMotor.setZero()  #Call setZero
+    def goForward(self):
+        if not self.sonicSensor.isNearObject():
+            self.dcMotor.setSpeed(STANDARDSPEEDFORWARD) #Call setSpeed
+
+    def goBackward(self):
+        self.dcMotor.setSpeed(STANDARDSPEEDBACKWARD) #Call setSpeed
+
+    def goStop(self):
+        self.dcMotor.setZero()  #Call setZero
 
 
 if __name__ == '__main__':
