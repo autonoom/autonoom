@@ -72,7 +72,7 @@ if __name__ == '__main__':
                 if counter2 < 5:
                     counter2 += 1
                     data2 += data
-                elif counter is 5:
+                elif counter2 is 5:
                     data2 = float(data2) / 5
                     if(float(data2) <= 0):
                         main.servoMotor.turnRight(data2)
