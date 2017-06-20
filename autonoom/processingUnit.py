@@ -64,5 +64,5 @@ if __name__ == '__main__':
             print "Received data = " + main.comProt.data
         if main.comProt.data == 'zero':  # Output the data is its not NULL
             main.servoMotor.zeroPosition()
-        if main.comProt.data == 5:  # Output the data is its not NULL
+        if main.comProt.data == '5':  # Output the data is its not NULL
             main.servoMotor.turnLeft(5)
