@@ -8,7 +8,7 @@ from classes.servoMotor import servoMotor
 from classes.sonicSensor import sonicSensor
 
 
-STANDARDSPEEDFORWARD = 13.9
+STANDARDSPEEDFORWARD = 12.9
 STANDARDSPEEDBACKWARD = 9.3
 
 #core class
@@ -27,15 +27,24 @@ class core(threading.Thread):
 
     def run(self):
         while True:
-
-
             if self.sonicSensor.isNearObject():
-               self.goStop()
-               if self.stopFlag is False:
-                   self.goBackward()
-                   self.servoMotor.turnLeft(12)
-               self.stopFlag = True
+                self.dcMotor.setZero()
+                if self.stopFlag is False:
+                    self.dcMotor.goBackward()
+                self.stopFlag = True
+                self.dcMotor.setZero()
             self.stopFlag = False
+
+        # while True:
+        #
+        #
+        #     if self.sonicSensor.isNearObject():
+        #        self.goStop()
+        #        if self.stopFlag is False:
+        #            self.goBackward()
+        #            self.servoMotor.turnLeft(12)
+        #        self.stopFlag = True
+        #     self.stopFlag = False
 
 
 
