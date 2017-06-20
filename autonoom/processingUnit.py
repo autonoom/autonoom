@@ -65,7 +65,7 @@ if __name__ == '__main__':
                 counter +=1
                 data += int(main.comProt.data)
             elif counter is 10:
-                data = data /100
+                data = float(data) /100
                 print "Avg data = " + str(data)
                 data = 0
                 counter = 0
