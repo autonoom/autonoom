@@ -65,10 +65,10 @@ if __name__ == '__main__':
         if main.comProt.data is not None:  # Output the data is its not NULL
             if counter < 10:
                 counter +=1
-                data += int(main.comProt.data)
+                data += float(main.comProt.data)
             elif counter is 10:
                 #avg from avg
-                data = float(data) /100
+                data = data /100
                 if counter2 < 5:
                     counter2 += 1
                     data2 += data
@@ -81,6 +81,8 @@ if __name__ == '__main__':
                     print "Avg data = " + str(data2)
                 data = 0
                 counter = 0
+                data2 = 0
+                counter2 = 0
             else:
                 print "Received data = " + main.comProt.data
         if main.comProt.data == 'zero':  # Output the data is its not NULL
