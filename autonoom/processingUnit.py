@@ -8,7 +8,7 @@ from classes.servoMotor import servoMotor
 from classes.sonicSensor import sonicSensor
 
 
-STANDARDSPEEDFORWARD = 12.9
+STANDARDSPEEDFORWARD = 13.9
 STANDARDSPEEDBACKWARD = 9.3
 
 #core class
