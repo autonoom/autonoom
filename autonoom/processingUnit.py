@@ -31,11 +31,11 @@ class core(threading.Thread):
                 self.goStop()
                 if self.stopFlag is False:
                     self.goBackward()
-                    main.servoMotor.turnLeft(5)
+                    self.servoMotor.turnLeft(12)
                 self.stopFlag = True
                 self.goStop()
             self.stopFlag = False
-            main.servoMotor.zeroPosition()
+            self.servoMotor.zeroPosition()
         # while True:
         #
         #
