@@ -30,9 +30,9 @@ class core(threading.Thread):
 
 
             if self.sonicSensor.isNearObject():
-               self.core.goStop()
+               self.goStop()
                if self.stopFlag is False:
-                   self.core.goBackward()
+                   self.goBackward()
                    self.servoMotor.turnLeft(12)
                self.stopFlag = True
             self.stopFlag = False
