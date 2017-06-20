@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 import time
 from sonicSensor import sonicSensor
 
-ZEROSPEED = 12.9
+ZEROSPEED = 13.1
 
 class dcMotor(threading.Thread):
         def __init__(self, motorPin):
