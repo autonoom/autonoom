@@ -33,10 +33,9 @@ class core(threading.Thread):
                     self.goBackward()
                     main.servoMotor.turnLeft(5)
                 self.stopFlag = True
-                main.servoMotor.zeroPosition()
                 self.goStop()
             self.stopFlag = False
-
+            main.servoMotor.zeroPosition()
         # while True:
         #
         #
