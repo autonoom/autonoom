@@ -27,27 +27,15 @@ class core(threading.Thread):
 
     def run(self):
         while True:
-            if self.sonicSensor.isNearObject():
-                self.goStop()
-                if self.stopFlag is False:
-                    self.goBackward()
-                    self.servoMotor.turnLeft(12)
-                self.stopFlag = True
-                self.goStop()
+        #     if self.sonicSensor.isNearObject():
+        #         self.goStop()
+        #         if self.stopFlag is False:
+        #             self.goBackward()
+        #             self.servoMotor.turnLeft(12)
+        #         self.stopFlag = True
+        #         self.goStop()
             self.stopFlag = False
             # self.servoMotor.zeroPosition()
-        # while True:
-        #
-        #
-        #     if self.sonicSensor.isNearObject():
-        #        self.goStop()
-        #        if self.stopFlag is False:
-        #            self.goBackward()
-        #            self.servoMotor.turnLeft(12)
-        #        self.stopFlag = True
-        #     self.stopFlag = False
-        #if main.comProt.data == 5:  # Output the data is its not NULL
-
 
 
     def goForward(self):
