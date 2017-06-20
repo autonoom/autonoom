@@ -54,7 +54,9 @@ if __name__ == '__main__':
     # start with going forward
     #main.goForward()
     counter = 0
+    counter2= 0
     data = 0
+    data2 =0
     while True:
         if main.comProt.data == 'stop':  # if the telnet connection sends a stop signal. Stop
             main.goStop()
@@ -65,12 +67,18 @@ if __name__ == '__main__':
                 counter +=1
                 data += int(main.comProt.data)
             elif counter is 10:
+                #avg from avg
                 data = float(data) /100
-                print "Avg data = " + str(data)
-                if(float(data) <= 0):
-                    main.servoMotor.turnRight(data)
-                else:
-                    main.servoMotor.turnLeft(data)
+                if counter2 < 5:
+                    counter2 += 1
+                    data2 += data
+                elif counter is 5:
+                    data2 = float(data2) / 5
+                    if(float(data2) <= 0):
+                        main.servoMotor.turnRight(data2)
+                    else:
+                        main.servoMotor.turnLeft(data2)
+                    print "Avg data = " + str(data2)
                 data = 0
                 counter = 0
             else:
