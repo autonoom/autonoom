@@ -18,7 +18,7 @@ class core(threading.Thread):
         self.comProt = comProt(5005) #Give port number to object
         self.servoMotor = servoMotor(18) #PWM pin for the servo is 18
         self.sonicSensor = sonicSensor(23,24,60) #Trigger pin, Echo pin and maxdistance
-        self.dcMotor = dcMotor(13) #PWM pin for the engine is 13
+        #self.dcMotor = dcMotor(13) #PWM pin for the engine is 13
         self.stopFlag = False
         #initialize thread
         threading.Thread.__init__(self)
@@ -28,25 +28,25 @@ class core(threading.Thread):
     def run(self):
         while True:
             if self.sonicSensor.isNearObject():
-                self.goStop()
+                #self.goStop()
                 if self.stopFlag is False:
-                    self.goBackward()
+                    #self.goBackward()
                     self.servoMotor.turnLeft(12)
                 self.stopFlag = True
-                self.goStop()
+                #self.goStop()
             self.stopFlag = False
             #self.servoMotor.zeroPosition() kan niet
 
 
-    def goForward(self):
-        if not self.sonicSensor.isNearObject():
-            self.dcMotor.setSpeed(STANDARDSPEEDFORWARD) #Call setSpeed
-
-    def goBackward(self):
-        self.dcMotor.setSpeed(STANDARDSPEEDBACKWARD) #Call setSpeed
-
-    def goStop(self):
-        self.dcMotor.setZero()  #Call setZero
+    # def goForward(self):
+    #     if not self.sonicSensor.isNearObject():
+    #         self.dcMotor.setSpeed(STANDARDSPEEDFORWARD) #Call setSpeed
+    #
+    # def goBackward(self):
+    #     self.dcMotor.setSpeed(STANDARDSPEEDBACKWARD) #Call setSpeed
+    #
+    # def goStop(self):
+    #     self.dcMotor.setZero()  #Call setZero
 
 
 if __name__ == '__main__':
