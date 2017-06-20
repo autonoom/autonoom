@@ -68,9 +68,9 @@ if __name__ == '__main__':
                 data = float(data) /100
                 print "Avg data = " + str(data)
                 if(float(data) <= 0):
-                    main.servoMotor.turnLeft(data)
-                else:
                     main.servoMotor.turnRight(data)
+                else:
+                    main.servoMotor.turnLeft(data)
                 data = 0
                 counter = 0
             else:
