@@ -31,7 +31,8 @@ class core(threading.Thread):
                 #self.goStop()
                 if self.stopFlag is False:
                     #self.goBackward()
-                    self.servoMotor.turnRight(5)
+                    #self.servoMotor.turnRight(5)
+                    pass 
                 self.stopFlag = True
                 #self.goStop()
             self.stopFlag = False
