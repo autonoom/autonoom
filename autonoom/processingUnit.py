@@ -62,11 +62,11 @@ if __name__ == '__main__':
             try:
                 print "Received data = " + str(main.comProt.data)
                 if (float(main.comProt.data) > 0):
-                    main.servoMotor.turnRight(float(main.comProt.data))
+                    main.servoMotor.turnRight(-float(main.comProt.data))
                 elif (float(main.comProt.data) == 0):
                     main.servoMotor.zeroPosition()
                 elif (float(main.comProt.data) < 0):
-                    main.servoMotor.turnLeft(float(main.comProt.data))
+                    main.servoMotor.turnLeft(-float(main.comProt.data))
                 else:
                     pass
             except:
