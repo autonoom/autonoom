@@ -61,11 +61,11 @@ if __name__ == '__main__':
         if main.comProt.data is not None:  # Output the data is its not NULL
             try:
                 print "Received data = " + str(main.comProt.data)
-                if (float(main.comProt.data) < 0):
+                if (float(main.comProt.data) > 0):
                     main.servoMotor.turnRight(float(main.comProt.data))
                 elif (float(main.comProt.data) == 0):
                     main.servoMotor.zeroPosition()
-                elif (float(main.comProt.data) > 0):
+                elif (float(main.comProt.data) < 0):
                     main.servoMotor.turnLeft(float(main.comProt.data))
                 else:
                     pass
