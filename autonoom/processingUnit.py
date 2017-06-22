@@ -79,7 +79,7 @@ if __name__ == '__main__':
                     else:
                         main.servoMotor.turnLeft(data2)
                     print "Avg data = " + str(data2)
-                data = 0
+                    data = 0
                 counter = 0
                 data2 = 0
                 counter2 = 0
