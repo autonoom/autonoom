@@ -26,7 +26,7 @@ class servoMotor(threading.Thread):
             self.steps = self.zeroPositionNumber
 
         def turnRight(self, steps): #Turn right with .. steps.
-            self.steps += steps
+            self.steps += (-steps)
             self.servo.ChangeDutyCycle(self.steps)
             self.steps = self.zeroPositionNumber
 
