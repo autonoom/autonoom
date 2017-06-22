@@ -31,7 +31,7 @@ class core(threading.Thread):
                 #self.goStop()
                 if self.stopFlag is False:
                     #self.goBackward()
-                    self.servoMotor.turnLeft(12)
+                    self.servoMotor.turnRight(5)
                 self.stopFlag = True
                 #self.goStop()
             self.stopFlag = False
@@ -67,7 +67,7 @@ if __name__ == '__main__':
             elif (float(main.comProt.data) > 0):
                 main.servoMotor.turnLeft(float(main.comProt.data))
             else:
-                pass 
+                pass
         if main.comProt.data == 'zero':  # Output the data is its not NULL
             main.servoMotor.zeroPosition()
         #if main.comProt.data == '5':  # Output the data is its not NULL
