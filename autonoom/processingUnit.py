@@ -53,39 +53,18 @@ if __name__ == '__main__':
     main = core()
     # start with going forward
     #main.goForward()
-    counter = 0
-    counter2= 0
-    data = 0
-    data2 =0
     while True:
         if main.comProt.data == 'stop':  # if the telnet connection sends a stop signal. Stop
             main.goStop()
         if main.comProt.data == 'start':  # if the telnet connection sends a start signal. Start
             main.goForward()
         if main.comProt.data is not None:  # Output the data is its not NULL
-            if counter < 10:
-                counter +=1
-                data += float(main.comProt.data)
-            elif counter is 10:
-                #avg from avg
-                data = data /100
-                if counter2 < 5:
-                    counter2 += 1
-                    data2 += data
-                elif counter2 is 5:
-                    data2 = float(data2) / 5
-                    if(float(data2) <= 0):
-                        main.servoMotor.turnRight(data2)
-                    else:
-                        main.servoMotor.turnLeft(data2)
-                    print "Avg data = " + str(data2)
-                data = 0
-                counter = 0
-                data2 = 0
-                counter2 = 0
+            print "Received data = " + str(main.comProt.data)
+            if (float(main.comProt.data) <= 0):
+                main.servoMotor.turnRight(float(main.comProt.data))
             else:
-                print "Received data = " + main.comProt.data
+                main.servoMotor.turnLeft(float(main.comProt.data))
         if main.comProt.data == 'zero':  # Output the data is its not NULL
             main.servoMotor.zeroPosition()
-        if main.comProt.data == '5':  # Output the data is its not NULL
-            main.servoMotor.turnLeft(5)
+        #if main.comProt.data == '5':  # Output the data is its not NULL
+        #    main.servoMotor.turnLeft(5)
