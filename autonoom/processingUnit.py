@@ -31,12 +31,10 @@ class core(threading.Thread):
                 self.goStop()
                 if self.stopFlag is False:
                     self.goBackward()
-                    #self.servoMotor.turnRight(5)
                     pass
                 self.stopFlag = True
                 self.goStop()
             self.stopFlag = False
-            #self.servoMotor.zeroPosition() kan niet
 
 
     def goForward(self):
@@ -63,7 +61,7 @@ if __name__ == '__main__':
             try:
                 print "Received data = " + str(main.comProt.data)
                 if (float(main.comProt.data) > 0):
-                    main.servoMotor.turnRight(-float(main.comProt.data))
+                    main.servoMotor.turnRight(float(main.comProt.data))
                 elif (float(main.comProt.data) == 0):
                     main.servoMotor.zeroPosition()
                 elif (float(main.comProt.data) < 0):
@@ -72,7 +70,3 @@ if __name__ == '__main__':
                     pass
             except:
                 print "not a good value"
-        if main.comProt.data == 'zero':  # Output the data is its not NULL
-            main.servoMotor.zeroPosition()
-        #if main.comProt.data == '5':  # Output the data is its not NULL
-        #    main.servoMotor.turnLeft(5)
