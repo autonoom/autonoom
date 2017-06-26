@@ -53,20 +53,22 @@ if __name__ == '__main__':
     # start with going forward
     #main.goForward()
     while True:
-        if main.comProt.data == 'stop':  # if the telnet connection sends a stop signal. Stop
-            main.goStop()
-        if main.comProt.data == 'start':  # if the telnet connection sends a start signal. Start
-            main.goForward()
-        if main.comProt.data is not None:  # Output the data is its not NULL
-            try:
-                print "Received data = " + str(main.comProt.data)
-                if (float(main.comProt.data) > 0):
-                    main.servoMotor.turnRight(float(main.comProt.data))
-                elif (float(main.comProt.data) == 0):
-                    main.servoMotor.zeroPosition()
-                elif (float(main.comProt.data) < 0):
-                    main.servoMotor.turnLeft(-float(main.comProt.data))
-                else:
-                    pass
-            except:
-                print "not a good value"
+        if main.comProt.data is not None:
+            if main.comProt.data == 'stop':  # if the telnet connection sends a stop signal. Stop
+                main.goStop()
+            elif main.comProt.data == 'start':  # if the telnet connection sends a start signal. Start
+                main.goForward()
+            else:
+                data = float(main.comProt.data)
+                try:
+                    print "Received data = " + data
+                    if (data > 0):
+                        main.servoMotor.turnRight(data)
+                    elif (data == 0):
+                        main.servoMotor.zeroPosition()
+                    elif (data < 0):
+                        main.servoMotor.turnLeft(-(data))
+                    else:
+                        pass
+                except:
+                    print "not a good value"
