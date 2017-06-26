@@ -59,9 +59,9 @@ if __name__ == '__main__':
             elif main.comProt.data == 'start':  # if the telnet connection sends a start signal. Start
                 main.goForward()
             else:
-                data = float(main.comProt.data)
                 try:
-                    print "Received data = " + data
+                    print "Received data = " + str(main.comProt.data)
+                    data = float(main.comProt.data)
                     if (data > 0):
                         main.servoMotor.turnRight(data)
                     elif (data == 0):
@@ -70,5 +70,5 @@ if __name__ == '__main__':
                         main.servoMotor.turnLeft(-(data))
                     else:
                         pass
-                except:
+                except ValueError:
                     print "not a good value"
