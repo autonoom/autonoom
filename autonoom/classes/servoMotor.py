@@ -22,12 +22,10 @@ class servoMotor(threading.Thread):
         self.zeroPosition() #Set position to zero at start
 
     def turnLeft(self, steps): #Turn left with .. steps.
-        self.servo.ChangeDutyCycle(ZEROPOSITION - self.steps)
-        print ZEROPOSITION - self.steps
+        self.servo.ChangeDutyCycle(ZEROPOSITION - steps)
 
     def turnRight(self, steps): #Turn right with .. steps.
-        self.servo.ChangeDutyCycle(ZEROPOSITION + self.steps)
-        print 'recht' , ZEROPOSITION + self.steps
+        self.servo.ChangeDutyCycle(ZEROPOSITION + steps)
 
     def zeroPosition(self): #set position to 0 .. steps.
         self.servo.ChangeDutyCycle(ZEROPOSITION)
