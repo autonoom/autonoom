@@ -52,13 +52,16 @@ if __name__ == '__main__':
     main = core()
     # start with going forward
     #main.goForward()
+    dcFlag = False
     while True:
         if main.comProt.data is not None:
             if main.comProt.data == 'stop':  # if the telnet connection sends a stop signal. Stop
                 main.goStop()
             elif main.comProt.data == 'start':  # if the telnet connection sends a start signal. Start
                 #main.goForward()
-                main.dcMotor.start()
+                if not dcFlag:
+                    dcFlag = True
+                    main.dcMotor.start()
             else:
                 try:
                     print "Received data = " + str(main.comProt.data)
