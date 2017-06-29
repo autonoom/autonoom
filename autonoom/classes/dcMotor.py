@@ -10,6 +10,7 @@ class dcMotor(threading.Thread):
         def __init__(self, motorPin):
             self.speed = 0
             self.motorPin = motorPin
+            self.setSpeedFlag = False
             #Setup GPIO
             #Broadcom SOCKET channel is used as standard 
             GPIO.setmode(GPIO.BCM)
@@ -29,7 +30,9 @@ class dcMotor(threading.Thread):
 
         def run(self):
             while True:
-                self.setSpeed(13.9)
+                if self.setSpeedFlag == False:
+                    self.setSpeedFlag = True
+                    self.setSpeed(13.9)
 
         def setSpeed(self, speed):
             self.motor.ChangeDutyCycle(speed)
