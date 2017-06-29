@@ -30,7 +30,7 @@ class dcMotor(threading.Thread):
 
         def run(self):
             while True:
-                if self.setSpeedFlag == False:
+                if not self.setSpeedFlag:
                     self.setSpeedFlag = True
                     self.setSpeed(13.9)
 
