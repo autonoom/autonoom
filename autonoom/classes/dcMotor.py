@@ -27,6 +27,10 @@ class dcMotor(threading.Thread):
         def __del__(self):
             GPIO.cleanup()
 
+        def run(self):
+            while True:
+                self.setSpeed(13.9)
+
         def setSpeed(self, speed):
             self.motor.ChangeDutyCycle(speed)
             self.speed = speed

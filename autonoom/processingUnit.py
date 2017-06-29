@@ -57,7 +57,8 @@ if __name__ == '__main__':
             if main.comProt.data == 'stop':  # if the telnet connection sends a stop signal. Stop
                 main.goStop()
             elif main.comProt.data == 'start':  # if the telnet connection sends a start signal. Start
-                main.goForward()
+                #main.goForward()
+                main.dcMotor.start()
             else:
                 try:
                     print "Received data = " + str(main.comProt.data)
