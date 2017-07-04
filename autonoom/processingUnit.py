@@ -18,8 +18,6 @@ class core():
         self.servoMotor = servoMotor(18) #PWM pin for the servo is 18
         self.dcMotor = dcMotor(13) #PWM pin for the engine is 13
         self.stopFlag = False
-        #initialize thread
-        threading.Thread.__init__(self)
 
     def goForward(self):
         self.dcMotor.setSpeed(STANDARDSPEEDFORWARD) #Call setSpeed

@@ -19,7 +19,6 @@ class dcMotor():
             #Implement sonicSensor class
             #Start on speed zero
             self.setZero()
-            threading.Thread.__init__(self)
 
         def __del__(self):
             GPIO.cleanup()

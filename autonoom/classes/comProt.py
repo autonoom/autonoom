@@ -12,7 +12,10 @@ class comProt(threading.Thread):
         threading.Thread.__init__(self)
         self.start() #Start the thread
         self.data = None
-
+	
+    def getData(self):
+	return self.data
+    
     def run(self):
         while 1:
             conn, addr = self.s.accept() #Accept the telnet connection if available
