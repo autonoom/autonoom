@@ -26,7 +26,7 @@ class comProt(threading.Thread):
                     if data:                        #If there is any data on the bus
                         self.data = data            #Put it into self.data
                         conn.send(data)             #Send an echo for confirmation
-                        if data == 'close': break
+                        if data == 'close': break #If the data == close. Close the connection
                 except socket.error:
                     print("Socket disconnect error!")
             conn.close()    #Close the connection
