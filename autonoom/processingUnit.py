@@ -5,41 +5,24 @@ import time
 from classes.dcMotor import dcMotor
 from classes.comProt import comProt
 from classes.servoMotor import servoMotor
-from classes.sonicSensor import sonicSensor
 
 
 STANDARDSPEEDFORWARD = 13.9
 STANDARDSPEEDBACKWARD = 9.3
 
 #core class
-class core(threading.Thread):
+class core():
     def __init__(self):
         #create objects
         self.comProt = comProt(5005) #Give port number to object
         self.servoMotor = servoMotor(18) #PWM pin for the servo is 18
-        self.sonicSensor = sonicSensor(23,24,60) #Trigger pin, Echo pin and maxdistance
         self.dcMotor = dcMotor(13) #PWM pin for the engine is 13
         self.stopFlag = False
         #initialize thread
         threading.Thread.__init__(self)
-        #start thread
-        self.start()
-
-    def run(self):
-        while True:
-            if self.sonicSensor.isNearObject():
-                self.goStop()
-                if self.stopFlag is False:
-                    self.goBackward()
-                    pass
-                self.stopFlag = True
-                self.goStop()
-            self.stopFlag = False
-
 
     def goForward(self):
-        if not self.sonicSensor.isNearObject():
-            self.dcMotor.setSpeed(STANDARDSPEEDFORWARD) #Call setSpeed
+        self.dcMotor.setSpeed(STANDARDSPEEDFORWARD) #Call setSpeed
 
     def goBackward(self):
         self.dcMotor.setSpeed(STANDARDSPEEDBACKWARD) #Call setSpeed
@@ -47,34 +30,33 @@ class core(threading.Thread):
     def goStop(self):
         self.dcMotor.setZero()  #Call setZero
 
+    def getInstruction(self):
+        return self.comProt.getData()
+
+    def executeInstruction(self, instruction):
+        if instruction == 'stop':
+            self.goStop()
+        elif instruction == 'start':
+            self.goForward()
+        else:
+            try:
+                data = float(instruction)
+                if (data > 0):
+                    self.servoMotor.turnRight(data)
+                elif (data == 0):
+                    self.servoMotor.zeroPosition()
+                elif (data < 0):
+                    self.servoMotor.turnLeft(-(data))
+                else:
+                    pass
+            except ValueError:
+                print "not a good value"
+
+
 
 if __name__ == '__main__':
     main = core()
-    # start with going forward
-    #main.goForward()
-    dcFlag = False
     while True:
-        if main.comProt.data is not None:
-            if main.comProt.data == 'stop':  # if the telnet connection sends a stop signal. Stop
-                main.goStop()
-            elif main.comProt.data == 'start':  # if the telnet connection sends a start signal. Start
-                #main.goForward()
-                if not dcFlag:
-                    dcFlag = True
-                    main.dcMotor.start()
-                else:
-                    pass
-            else:
-                try:
-                    print "Received data = " + str(main.comProt.data)
-                    data = float(main.comProt.data)
-                    if (data > 0):
-                        main.servoMotor.turnRight(data)
-                    elif (data == 0):
-                        main.servoMotor.zeroPosition()
-                    elif (data < 0):
-                        main.servoMotor.turnLeft(-(data))
-                    else:
-                        pass
-                except ValueError:
-                    print "not a good value"
+        data = main.getInstruction()
+        if data is not None:
+            main.executeInstruction(data)
