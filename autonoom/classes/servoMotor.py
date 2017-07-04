@@ -16,6 +16,7 @@ class servoMotor():
         # Setup PWM with 100KHz
         self.servo = GPIO.PWM(self.servoPin, 100)
         # Start PWM
+	self.servo.start(0)
         self.zeroPosition() #Set position to zero at start
 
     def turnLeft(self, steps): #Turn left with .. steps.
