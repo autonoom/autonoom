@@ -1,3 +1,6 @@
+#is not used
+#because of the side effects to the DC motor.
+
 import RPi.GPIO as GPIO
 import time
 import threading
